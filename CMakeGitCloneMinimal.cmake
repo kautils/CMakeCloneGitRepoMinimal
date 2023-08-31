@@ -1,4 +1,4 @@
-if(NOT DEFINED ${KAUTIL_THIRD_PARTY_DIR})
+if(NOT DEFINED KAUTIL_THIRD_PARTY_DIR)
     set(KAUTIL_THIRD_PARTY_DIR ${CMAKE_CURRENT_BINARY_DIR}/third_party)
     file(MAKE_DIRECTORY "${KAUTIL_THIRD_PARTY_DIR}")
 endif()
@@ -10,6 +10,7 @@ endif()
 include("${KAUTIL_THIRD_PARTY_DIR}/cmake/CMakeExecuteGit.cmake")
 
 macro(CMakeGitCloneMinimal prfx)
+    
     cmake_parse_arguments( ${prfx} "CLEAR;FORCE_UPDATE;VERBOSE;VERBOSE_GIT" "TAG;BRANCH;HASH;REPOSITORY_URI;REPOSITORY_NAME;REPOSITORY_REMOTE;DESTINATION" "" ${ARGV})
     
     set(${prfx}_prfx_unsetter)
@@ -51,10 +52,9 @@ macro(CMakeGitCloneMinimal prfx)
     endif()
     
     list(APPEND ${prfx}_unsetter __verbose_option)
-    if(${${prfx}_VERBOSE_GIT})
+    if(${${prfx}_VERBOSE})
         set(__verbose_option VERBOSE)
     endif()
-    set(__verbose_option VERBOSE)
     
     if((NOT DEFINED __repo_tag) AND ((NOT DEFINED __repo_branch) AND (NOT DEFINED __repo_digest)))
         message(FATAL_ERROR "must specify id to clone via HASH or TAG or BRANCH.")
@@ -88,7 +88,7 @@ macro(CMakeGitCloneMinimal prfx)
             set(__want_hash ${__repo_digest})
         endif()
         
-        if(0 EQUAL ${execgit_RESULT_VARIABLE})
+        if(DEFINED execgit_RESULT_VARIABLE AND (0 EQUAL ${execgit_RESULT_VARIABLE}))
             string(SUBSTRING ${__want_hash} 0 7 __want_hash)
             unset(${__result_var} CACHE)
             set(${__result_var} ${__dest_p}/${__want_hash}  CACHE STRING "")
