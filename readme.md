@@ -1,5 +1,9 @@
-```cmake
+### CMakeGitCloneMinimal
+* clone git repository with init,fetch and checkout.
+* save the reusult using short hash.
 
+### example
+```cmake
 include(CMakeExecuteGit.cmake)
 CMakeGitCloneMinimal( test_repo 
         #FORCE_UPDATE 
@@ -14,5 +18,4 @@ CMakeGitCloneMinimal( test_repo
         #VERBOSE_GIT
         )
 message(${test_repo}) # path to repository
-
 ```
