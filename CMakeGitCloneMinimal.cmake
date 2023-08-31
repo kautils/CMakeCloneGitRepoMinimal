@@ -4,7 +4,7 @@ if(NOT DEFINED KAUTIL_THIRD_PARTY_DIR)
 endif()
 
 if(NOT EXISTS ${KAUTIL_THIRD_PARTY_DIR}/cmake/CMakeExecuteGit.cmake)
-    file(DOWNLOAD https://raw.githubusercontent.com/kautils/CMakeExecuteGit/v0.0.1/CMakeExecuteGit.cmake "${KAUTIL_THIRD_PARTY_DIR}/cmake/CMakeExecuteGit.cmake")
+    file(DOWNLOAD https://raw.githubusercontent.com/kautils/CMakeExecuteCommand/v0.0.1/CMakeExecuteGit.cmake "${KAUTIL_THIRD_PARTY_DIR}/cmake/CMakeExecuteCommand.cmake")
 endif()
 
 include("${KAUTIL_THIRD_PARTY_DIR}/cmake/CMakeExecuteGit.cmake")
