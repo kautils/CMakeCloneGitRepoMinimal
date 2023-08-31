@@ -10,7 +10,7 @@ endif()
 include("${KAUTIL_THIRD_PARTY_DIR}/cmake/CmakeLibrarytemplate.cmake")
 include("${KAUTIL_THIRD_PARTY_DIR}/cmake/CMakeExecuteGit.cmake")
 
-macro(CMakeCloneGitRepoMinimal prfx)
+macro(CMakeGitCloneMinimal prfx)
     cmake_parse_arguments( ${prfx} "CLEAR;FORCE_UPDATE;VERBOSE;VERBOSE_GIT" "TAG;BRANCH;HASH;REPOSITORY_URI;REPOSITORY_NAME;REPOSITORY_REMOTE;DESTINATION" "" ${ARGV})
     
     set(${prfx}_prfx_unsetter)
