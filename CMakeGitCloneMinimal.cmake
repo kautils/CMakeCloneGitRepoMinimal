@@ -11,7 +11,7 @@ include("${KAUTIL_THIRD_PARTY_DIR}/cmake/CMakeExecuteCommand.cmake")
 
 macro(CMakeGitCloneMinimal prfx)
     
-    cmake_parse_arguments( ${prfx} "CLEAR;FORCE_UPDATE;VERBOSE;VERBOSE_GIT" "TAG;BRANCH;HASH;REPOSITORY_URI;REPOSITORY_REMOTE;DESTINATION" "" ${ARGV})
+    cmake_parse_arguments( ${prfx} "CLEAR;FORCE_UPDATE;VERBOSE" "TAG;BRANCH;HASH;REPOSITORY_URI;REPOSITORY_REMOTE;DESTINATION" "" ${ARGV})
     
     set(${prfx}_prfx_unsetter)
     set(${prfx}_unsetter)
