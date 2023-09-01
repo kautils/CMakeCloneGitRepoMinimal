@@ -108,6 +108,8 @@ macro(CMakeGitCloneMinimal prfx)
             file(RENAME ${__dest_c} ${${__result_var}})
         endif()
         CMakeExecuteCommand(execgit CLEAR)
+    else()
+        set(${__result_var} ${${__cache_var}})
     endif()
     
     foreach(__var ${${prfx}_unsetter})
