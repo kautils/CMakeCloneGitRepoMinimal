@@ -76,7 +76,10 @@ macro(CMakeGitCloneMinimal prfx)
     endif()
     
     
-    if(${__repo_force_update} OR (${${__result_var}} STREQUAL "") OR (NOT EXISTS ${${__cache_var}}/.git))
+    if(${__repo_force_update} 
+            OR (NOT DEFINED CACHE{${__cache_var}}) 
+            OR (DEFINED CACHE{${__cache_var}} AND NOT EXISTS ${${__cache_var}}/.git))
+        
         file(MAKE_DIRECTORY ${__dest_c})
         CMakeExecuteCommand(execgit COMMAND git init DIR ${__dest_c} ${__verbose_option} ASSERT)
         CMakeExecuteCommand(execgit COMMAND git remote add origin ${__repo_uri} DIR ${__dest_c} ${__verbose_option})
@@ -101,7 +104,7 @@ macro(CMakeGitCloneMinimal prfx)
             string(SUBSTRING ${__want_hash} 0 7 __want_hash)
             unset(${__cache_var} CACHE)
             set(${__result_var} ${__dest_p}/${__want_hash} )
-            set(${__cache_var} ${__dest_p}/${__want_hash}  CACHE STRING "")
+            set(${__cache_var} ${__dest_p}/${__want_hash}  CACHE STRING "used by CMakeGitCloneMinimal internally")
             if(EXISTS ${${__result_var}})
                 file(REMOVE_RECURSE ${${__result_var}})
             endif()
