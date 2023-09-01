@@ -1,7 +1,6 @@
 ### CMakeGitCloneMinimal
 * clone git repository with init,fetch and checkout.
 * save the reusult using short hash.
-
 ### example
 ```cmake
 include(CMakeExecuteGit.cmake)
