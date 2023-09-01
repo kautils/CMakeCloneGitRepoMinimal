@@ -6,8 +6,7 @@
 ```cmake
 include(CMakeExecuteGit.cmake)
 CMakeGitCloneMinimal( test_repo 
-        #FORCE_UPDATE 
-        REPOSITORY_NAME test_repo 
+        #FORCE_UPDATE  
         REPOSITORY_REMOTE origin  
         REPOSITORY_URI path_to_test_repo  
         DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/third_party/cmake
