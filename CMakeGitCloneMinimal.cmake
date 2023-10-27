@@ -1,3 +1,9 @@
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/CMakeKautilHeader.v0.0.cmake)
+    file(DOWNLOAD https://raw.githubusercontent.com/kautils/CMakeKautilHeader/v0.0/CMakeKautilHeader.cmake ${CMAKE_BINARY_DIR}/CMakeKautilHeader.v0.0.cmake)
+endif()
+include(${CMAKE_BINARY_DIR}/CMakeKautilHeader.cmake)
+
+
 macro(CMakeGitCloneMinimal prfx)
     
     set(CMakeGitCloneMinimal_evacu_m ${m})
@@ -7,15 +13,10 @@ macro(CMakeGitCloneMinimal prfx)
         set(${m}_kautil_cmake_dest ${CMAKE_CURRENT_BINARY_DIR}/kautil_cmake)
         file(MAKE_DIRECTORY "${KAUTIL_THIRD_PARTY_DIR}")
     else()
-        set(${m}_kautil_cmake_dest ${KAUTIL_THIRD_PARTY_DIR}/kautil_cmake)
+        set(${m}_kautil_cmake_dest ${CMAKE_BINARY_DIR}/kautil_cmake)
     endif()
 
-    set(${m}_cmake_exec_command https://raw.githubusercontent.com/kautils/CMakeExecuteCommand/v0.0.1/CMakeExecuteCommand.cmake)
-    if(NOT EXISTS ${${m}_kautil_cmake_dest}/CMakeExecuteCommand.cmake)
-        file(DOWNLOAD ${${m}_cmake_exec_command} "${${m}_kautil_cmake_dest}/CMakeExecuteCommand.cmake")
-    endif()
-    
-    include("${${m}_kautil_cmake_dest}/CMakeExecuteCommand.cmake")
+    git_clone(https://raw.githubusercontent.com/kautils/CMakeExecuteCommand/v0.0.1/CMakeExecuteCommand.cmake)
     
     cmake_parse_arguments( ${prfx} "CLEAR;FORCE_UPDATE;VERBOSE" "TAG;BRANCH;HASH;REPOSITORY_URI;REPOSITORY_REMOTE;DESTINATION" "" ${ARGV})
     set(${m}_prfx_unsetter)
