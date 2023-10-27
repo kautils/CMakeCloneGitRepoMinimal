@@ -7,7 +7,7 @@ macro(CMakeGitCloneMinimal prfx)
         set(${m}_kautil_cmake_dest ${CMAKE_CURRENT_BINARY_DIR}/kautil_cmake)
         file(MAKE_DIRECTORY "${KAUTIL_THIRD_PARTY_DIR}")
     else()
-        set(${m}_kautil_cmake_dest ${CMAKE_BINARY_DIR}/kautil_cmake)
+        set(${m}_kautil_cmake_dest ${KAUTIL_THIRD_PARTY_DIR}/kautil_cmake)
     endif()
 
     set(${m}_cmake_exec_command https://raw.githubusercontent.com/kautils/CMakeExecuteCommand/v0.0.1/CMakeExecuteCommand.cmake)
